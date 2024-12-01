@@ -1,0 +1,297 @@
+<html>
+ <head>
+  <title>
+   Health &amp; Fitness Dashboard - Health &amp; Diet Tips
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100">
+  <header class="bg-green-600 text-white p-4">
+   <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-2xl font-bold">
+     Health &amp; Fitness Dashboard
+    </h1>
+    <nav>
+     <ul class="flex space-x-4">
+      <li>
+       <a class="hover:underline" href="#" onclick="location.href='main.html'">
+        Home
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="#" onclick="location.href='programs.html'">
+        Programs
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="#" onclick="location.href='tips.html'">
+        Tips
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="#" onclick="location.href='profile.html'">
+        Profile
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <main class="container mx-auto mt-8">
+   <section class="mb-8">
+    <h2 class="text-xl font-bold mb-4">
+     Health &amp; Diet Tips
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal1')">
+      <img alt="Glass of water with lemon slices" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/tepMnADGdfqgGEQPU49f2M7xlhHSRPehWWe6NMDRYaegaBp8E.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Stay Hydrated
+      </h3>
+      <p class="text-gray-600">
+       Drinking enough water is crucial for your overall health and fitness.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal1')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal2')">
+      <img alt="Balanced meal with vegetables, protein, and grains" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/x6Gmken9uL1pbC6bdOsvoJQAiDJYIBp5L4suMo61NIEADS5JA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Balanced Diet
+      </h3>
+      <p class="text-gray-600">
+       Ensure your diet includes a variety of nutrients to support your fitness goals.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal2')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal3')">
+      <img alt="Person running in a park" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/n2kdsIGGWUZaAlg9z0R8IPwufg2yBG4eI5pwnpgEaH09FkyTA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Regular Exercise
+      </h3>
+      <p class="text-gray-600">
+       Consistency is key. Aim to exercise regularly to see the best results.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal3')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal4')">
+      <img alt="Person sleeping peacefully" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/OpXsRprZjVreZ6gWhloSD9rVXFf3QjtyEnROFGaQ01PtFkyTA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Get Enough Sleep
+      </h3>
+      <p class="text-gray-600">
+       Quality sleep is essential for recovery and overall well-being.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal4')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal5')">
+      <img alt="Person stretching before a workout" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/Vy3RBYqBv4ZBGJexqBwAoof2JLGMycWTIFggPWDSFbZ6FkyTA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Warm-Up and Cool Down
+      </h3>
+      <p class="text-gray-600">
+       Always include a warm-up and cool-down in your workout routine to prevent injuries.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal5')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal6')">
+      <img alt="Person meditating in a serene environment" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/yoMtJ3ksl773BNHvIFfgppodr4V4b3W85B5SL3SDQRU0CS5JA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Listen to Your Body
+      </h3>
+      <p class="text-gray-600">
+       Pay attention to your body's signals and avoid overtraining.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal6')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal7')">
+      <img alt="Assorted fruits and vegetables" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/9kXLjqC7vAJUHFzlfBcgNa7GVfRKYiyc9LQ2ZuRVn1SzFkyTA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Eat More Fruits and Vegetables
+      </h3>
+      <p class="text-gray-600">
+       Incorporate a variety of fruits and vegetables into your diet for essential vitamins and minerals.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal7')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal8')">
+      <img alt="Healthy whole foods" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/nLYxneIWINWbbyCHFQ5C3EzI2hneo9jqFN5ufYIOb0m2LIlnA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Limit Processed Foods
+      </h3>
+      <p class="text-gray-600">
+       Reduce your intake of processed foods and opt for whole, natural foods instead.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal8')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal9')">
+      <img alt="Person measuring food portions" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/SEfHt9Cau6RPZSrvWQBqwMJAETWFd9eo8bDwBnDfQdwyLIlnA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Control Portion Sizes
+      </h3>
+      <p class="text-gray-600">
+       Be mindful of portion sizes to avoid overeating and maintain a healthy weight.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal9')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal10')">
+      <img alt="Person walking in a park" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/nz333fh1SIWjWCmi47dfxQU6U1zHwJ08SCEtAMiViEHfLIlnA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Stay Active Throughout the Day
+      </h3>
+      <p class="text-gray-600">
+       Incorporate physical activity into your daily routine, even if it's just a short walk.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal10')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal11')">
+      <img alt="Person practicing yoga for stress relief" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/3XOSvlxTa15NElFz3lmJkcDISuge4XBGpl32kKs3Asm3CS5JA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Manage Stress
+      </h3>
+      <p class="text-gray-600">
+       Practice stress management techniques such as meditation, deep breathing, or yoga.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal11')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal12')">
+      <img alt="Calendar with consistent workout schedule" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/ptfM7q6nfYmP30eOTxqzlpIeH3lywyZnjF2ve9Ru0vwJtgUeE.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Stay Consistent
+      </h3>
+      <p class="text-gray-600">
+       Consistency is key to achieving and maintaining your health and fitness goals.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal12')">
+       Read More
+      </button>
+     </div>
+    </div>
+   </section>
+   <section class="mb-8">
+    <h2 class="text-xl font-bold mb-4">
+     Diet Programs
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal13')">
+      <img alt="Plate of fresh vegetables and lean protein" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/nLndlgfmBHQJci7oQ2VfZNHkCF4nnfOyfHa4u7AT5h1UXQKPB.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Balanced Diet Plan
+      </h3>
+      <p class="text-gray-600">
+       A diet plan that includes a balance of proteins, carbohydrates, and fats.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal13')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal14')">
+      <img alt="Assorted fruits and vegetables" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/9kXLjqC7vAJUHFzlfBcgNa7GVfRKYiyc9LQ2ZuRVn1SzFkyTA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Vegetarian Diet Plan
+      </h3>
+      <p class="text-gray-600">
+       A diet plan focused on plant-based foods, including fruits, vegetables, and grains.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal14')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal15')">
+      <img alt="Plate of lean meat and vegetables" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/HpRVBgjZBWLjFxQe1SMbankVQh2oJUXMDCMzg038ec23FkyTA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       High-Protein Diet Plan
+      </h3>
+      <p class="text-gray-600">
+       A diet plan that emphasizes high protein intake to support muscle growth and repair.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal15')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal16')">
+      <img alt="Plate of low-carb foods" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/RwoCLKM2nwIVMNwLJtbXXS3hDhf1YeX9rNLplNY2ABirFkyTA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Low-Carb Diet Plan
+      </h3>
+      <p class="text-gray-600">
+       A diet plan that reduces carbohydrate intake to promote weight loss and improve health.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal16')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal17')">
+      <img alt="Plate of Mediterranean foods" class="w-full h-40 object-cover rounded mb-4" height="200" src="https://storage.googleapis.com/a1aa/image/jskD4bhKiD7EK9f9n1TjqIYDkr8goKGbOhsQEQE2a4c4CS5JA.jpg" width="300"/>
+      <h3 class="text-lg font-semibold">
+       Mediterranean Diet Plan
+      </h3>
+      <p class="text-gray-600">
+       A diet plan inspired by the eating habits of Mediterranean countries, rich in fruits, vegetables, and healthy fats.
+      </p>
+      <button class="mt-2 bg-green-600 text-white py-2 px-4 rounded" onclick="openModal('modal17')">
+       Read More
+      </button>
+     </div>
+     <div class="bg-white p-4 rounded shadow cursor-pointer" onclick="openModal('modal18')">
+      <img alt="Plate of keto-friendly foods" class="w

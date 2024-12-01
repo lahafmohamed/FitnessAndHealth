@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Checker</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+  <div class="bg-white shadow-md rounded p-6 w-full max-w-md">
+    <h1 class="text-2xl font-bold text-center mb-4">Calorie Checker</h1>
+    <input 
+      id="food-input" 
+      type="text" 
+      placeholder="Enter food item" 
+      class="border border-gray-300 rounded w-full p-2 mb-4"
+    >
+    <button 
+      id="search-btn" 
+      class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+    >
+      Search
+    </button>
+    <div id="results" class="mt-4"></div>
+  </div>
+  <script src="calories.js"></script>
+</body>
+</html>

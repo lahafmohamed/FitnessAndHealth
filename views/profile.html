@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Health & Fitness Dashboard - Profile</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script type="module" src="profile.js" defer></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+    .form-input {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.375rem;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <header class="bg-green-600 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Health & Fitness Dashboard</h1>
+      <nav>
+        <ul class="flex space-x-4">
+          <li><a class="hover:underline" href="main.html">Home</a></li>
+          <li><a class="hover:underline" href="programs.html">Programs</a></li>
+          <li><a class="hover:underline" href="tips.html">Tips</a></li>
+          <li><a class="hover:underline" href="profile.html">Profile</a></li>
+          <li><button id="logout" class="hover:underline">Logout</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <main class="container mx-auto mt-8">
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4">Profile</h2>
+      <div class="bg-white p-6 rounded shadow">
+        <form>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="photo">Profile Photo</label>
+            <input class="form-input" id="photo" name="photo" type="file"/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
+            <input class="form-input" id="name" name="name" placeholder="Enter your name" type="text" value=""/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+            <input class="form-input" id="email" name="email" placeholder="Enter your email" type="email" value=""/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="age">Age</label>
+            <input class="form-input" id="age" name="age" placeholder="Enter your age" type="number" value=""/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="weight">Weight (kg)</label>
+            <input class="form-input" id="weight" name="weight" placeholder="Enter your weight" type="number" value=""/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="height">Height (cm)</label>
+            <input class="form-input" id="height" name="height" placeholder="Enter your height" type="number" value=""/>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="goal">Fitness Goal</label>
+            <select class="form-input" id="goal" name="goal">
+              <option>Lose Weight</option>
+              <option>Build Muscle</option>
+              <option>Improve Endurance</option>
+              <option>Increase Flexibility</option>
+            </select>
+          </div>
+          <div class="flex items-center justify-between">
+            <button class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" type="submit">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-4">Your Information</h2>
+      <div class="bg-white p-6 rounded shadow">
+        <div class="mb-4">
+          <img alt="Profile photo" class="w-32 h-32 rounded-full mx-auto mb-4" id="display-photo"/>
+          <p class="text-center text-lg font-semibold" id="display-name">Name</p>
+        </div>
+        <div class="mb-4"><p class="text-gray-700"><strong>Email:</strong> <span id="display-email"></span></p></div>
+        <div class="mb-4"><p class="text-gray-700"><strong>Age:</strong> <span id="display-age"></span></p></div>
+        <div class="mb-4"><p class="text-gray-700"><strong>Weight:</strong> <span id="display-weight"></span> kg</p></div>
+        <div class="mb-4"><p class="text-gray-700"><strong>Height:</strong> <span id="display-height"></span> cm</p></div>
+        <div class="mb-4"><p class="text-gray-700"><strong>Fitness Goal:</strong> <span id="display-goal"></span></p></div>
+        <div class="mb-4"><p class="text-gray-700"><strong>BMI:</strong> <span id="display-bmi"></span></p></div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-green-600 text-white p-4 mt-8">
+    <div class="container mx-auto text-center">
+      <p>© 2023 Health & Fitness Dashboard. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

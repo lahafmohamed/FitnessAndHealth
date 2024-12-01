@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health & Fitness Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <script defer src="main.js" type="module"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        .header {
+            transition: top 0.3s;
+        }
+        .header.hidden {
+            top: -100px;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let lastScrollTop = 0;
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > lastScrollTop) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                lastScrollTop = scrollTop;
+            });
+        });
+    </script>
+</head>
+<body class="bg-gray-100">
+    <header class="header bg-green-600 text-white p-4 shadow-md fixed w-full top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Health &amp; Fitness Dashboard</h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a class="nav-link" href="#" onclick="location.href='main.html'">Home</a></li>
+                    <li><a class="nav-link" href="#" onclick="location.href='programs.html'">Programs</a></li>
+                    <li><a class="nav-link" href="#" onclick="location.href='tips.html'">Tips</a></li>
+                    <li><a class="nav-link" href="#" onclick="location.href='profile.html'">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto mt-24">
+        <section class="mb-8" id="your-stats">
+            <h2 class="text-xl font-bold mb-4">Your Stats</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Stats will be dynamically updated here -->
+            </div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-bold mb-4">Programs</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded shadow">
+                    <img alt="Image of a person doing yoga" class="w-full h-40 object-cover rounded mb-4" src="https://storage.googleapis.com/a1aa/image/XLP9GYK9n2bgCFkYLeFatIhPfEu5YGdY10CtdopmQ17paO1TA.jpg" />
+                    <h3 class="text-lg font-semibold">Yoga for Beginners</h3>
+                    <p class="text-gray-600">A gentle introduction to yoga for those new to the practice.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <img alt="Image of a person lifting weights" class="w-full h-40 object-cover rounded mb-4" src="https://storage.googleapis.com/a1aa/image/NhBBqLqOEr5sOJQ7TJm7emIycpee1AodVKN 0C1g1Z1.jpg" />
+                    <h3 class="text-lg font-semibold">Strength Training</h3>
+                    <p class="text-gray-600">Build muscle and strength with our comprehensive training program.</p>
+                </div>
+                <div class="bg-white p-4 rounded shadow">
+                    <img alt="Image of a person running" class="w-full h-40 object-cover rounded mb-4" src="https://storage.googleapis.com/a1aa/image/8g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1g1 ```html
+                </div>
+            </div>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-xl font-bold mb-4">Fitness Tips</h2>
+            <ul class="list-disc pl-5">
+                <li>Stay hydrated: Drink plenty of water throughout the day.</li>
+                <li>Set realistic goals: Aim for achievable fitness milestones.</li>
+                <li>Mix it up: Incorporate different types of workouts to keep things interesting.</li>
+                <li>Listen to your body: Rest when needed and avoid overtraining.</li>
+                <li>Stay consistent: Make fitness a regular part of your routine.</li>
+            </ul>
+        </section>
+    </main>
+    <footer class="bg-green-600 text-white p-4 text-center">
+        <p>&copy; 2023 Health & Fitness Dashboard. All rights reserved.</p>
+    </footer>
+</body>
+</html>
