@@ -15,19 +15,22 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from 'public' directory
+// Serve static files from the 'public' directory (e.g., CSS, JS)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve HTML files from 'views' directory
+// Serve all .html files from the 'views' directory directly
+app.use('/', express.static(path.join(__dirname, 'views')));
+
+// Routes for individual HTML pages (optional but explicit)
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views', 'index.html')));
-app.get('/calories', (req, res) => res.sendFile(path.join(__dirname, 'views', 'calories.html')));
-app.get('/login', (req, res) => res.sendFile(path.join(__dirname, 'views', 'login.html')));
-app.get('/register', (req, res) => res.sendFile(path.join(__dirname, 'views', 'register.html')));
-app.get('/profile', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
-app.get('/tips', (req, res) => res.sendFile(path.join(__dirname, 'views', 'tips.html')));
-app.get('/main', (req, res) => res.sendFile(path.join(__dirname, 'views', 'main.html')));
-app.get('/programs', (req, res) => res.sendFile(path.join(__dirname, 'views', 'programs.html')));
-app.get('/test', (req, res) => res.sendFile(path.join(__dirname, 'views', 'test.html')));
+app.get('/calories.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'calories.html')));
+app.get('/login.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'login.html')));
+app.get('/register.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'register.html')));
+app.get('/profile.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
+app.get('/tips.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'tips.html')));
+app.get('/main.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'main.html')));
+app.get('/programs.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'programs.html')));
+app.get('/test.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'test.html')));
 
 // Backend API endpoint for getting a token
 app.post('/token', async (req, res) => {

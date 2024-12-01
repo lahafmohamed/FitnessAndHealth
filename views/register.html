@@ -1,13 +1,15 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Register - Health and Fitness</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
-  <link href="registerCss.css" rel="stylesheet"/>
-  <script defer="" src="public\register.js" type="module"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="registerCss.css" rel="stylesheet" />
+  <!-- Include your Firebase JS SDK -->
+  <script type="module" src="register.js"></script>
 </head>
 <body class="bg-gray-100">
   <!-- Navbar -->
@@ -23,35 +25,65 @@
       </ul>
     </div>
   </nav>
+
   <!-- Registration Section -->
   <section class="registration-section">
     <div class="container mx-auto px-4">
       <h2 class="registration-title text-center mb-12">Register</h2>
       <div class="form-container max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <form action="#" method="POST">
+        <form id="registerForm">
           <div class="mb-6">
             <label class="input-label block text-gray-700 font-bold mb-2" for="email">Email</label>
-            <input class="input-field w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600" id="email" name="email" required="" type="email"/>
+            <input
+              class="input-field w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+              id="email"
+              name="email"
+              required
+              type="email"
+            />
           </div>
           <div class="mb-6">
             <label class="input-label block text-gray-700 font-bold mb-2" for="password">Password</label>
-            <input class="input-field w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600" id="password" name="password" required="" type="password"/>
+            <input
+              class="input-field w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+              id="password"
+              name="password"
+              required
+              type="password"
+            />
           </div>
           <div class="mb-6">
             <label class="input-label block text-gray-700 font-bold mb-2" for="confirm-password">Confirm Password</label>
-            <input class="input-field w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600" id="confirmPassword" name="confirm-password" required="" type="password"/>
+            <input
+              class="input-field w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+              id="confirmPassword"
+              name="confirm-password"
+              required
+              type="password"
+            />
           </div>
-          <button class="submit-button w-full bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition duration-300" id="submit" type="submit">Register</button>
+          <button
+            class="submit-button w-full bg-green-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-700 transition duration-300"
+            id="submit"
+            type="submit"
+          >
+            Register
+          </button>
         </form>
+
         <!-- Add a Google Sign-In button -->
         <div class="mt-6">
-          <button class="google-signin-button w-full bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition duration-300 flex items-center justify-center" id="googleSignIn">
+          <button
+            class="google-signin-button w-full bg-red-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition duration-300 flex items-center justify-center"
+            id="googleSignIn"
+          >
             <i class="fab fa-google mr-2"></i> Sign in with Google
           </button>
         </div>
       </div>
     </div>
   </section>
+
   <!-- Footer -->
   <footer class="footer bg-gray-800 text-white py-8">
     <div class="container mx-auto px-4 text-center">
