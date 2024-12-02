@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CaloCheck</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body class="font-roboto bg-gray-100">
+
+    <!-- Navbar Section -->
+    <nav class="bg-green-600">
+        <div class="container mx-auto p-4 text-center">
+            <a href="calorie.html" class="text-5xl font-bold text-yellow-400">CaloCheck</a>
+        </div>
+        <ul class="flex justify-center space-x-4 p-4">
+            <li>
+                <a class="hover:underline text-white" href="#" onclick="location.href='main.html'">Home</a>
+            </li>
+            <li>
+                <a class="hover:underline text-white" href="#" onclick="location.href='programs.html'">Programs</a>
+            </li>
+            <li>
+                <a class="hover:underline text-white" href="#" onclick="location.href='tips.html'">Tips</a>
+            </li>
+            <li>
+                <a class="hover:underline text-white" href="#" onclick="location.href='calorie.html'">Calorie</a>
+            </li>
+            <li>
+                <a class="hover:underline text-white" href="#" onclick="location.href='profile.html'">Profile</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Main Section -->
+    <div class="container mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center py-10 md:py-20">
+            <!-- Left Icon Container -->
+            <div class="flex flex-col gap-5">
+                <i class="fas fa-hamburger text-4xl text-green-800"></i>
+                <i class="fas fa-fish text-4xl text-green-800"></i>
+                <i class="fas fa-pizza-slice text-4xl text-green-800"></i>
+                <i class="fas fa-egg text-4xl text-green-800"></i>
+                <i class="fas fa-bowl-rice text-4xl text-green-800"></i>
+                <i class="fas fa-dumbbell text-4xl text-green-800"></i>
+                <i class="fas fa-carrot text-4xl text-green-800"></i>
+            </div>
+
+            <!-- Center Container -->
+            <div class="text-center px-4 md:px-20">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Discover the Science of Smart <span class="text-yellow-400">Eating with Us!</span></h1>
+                <p class="text-lg mb-6">Explore nutrition details for your favorite foods, calculate calories burned through exercise, and much more!</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-3">
+                    <input type="text" id="searchInput" placeholder="Search Food..." class="p-2 border border-gray-300 rounded-md w-full md:w-auto" required />
+                    <button class="bg-green-600 text-white p-2 rounded-md flex items-center gap-2" id="searchButton">
+                        <i class="fas fa-search"></i><span>Search</span>
+                    </button>
+                </div>
+                <p id="errorMessage" class="hidden text-red-600 mt-2">No results found. Try another search.</p>
+                <div id="loader" class="hidden">
+                    <i class="fas fa-spinner fa-spin text-green-600 text-3xl"></i>
+                </div>
+            </div>
+
+            <!-- Right Icon Container -->
+            <div class="flex flex-col gap-5">
+                <i class="fas fa-walking text-4xl text-green-800"></i>
+                <i class="fas fa-bowl-rice text-4xl text-green-800"></i>
+                <i class="fas fa-apple-alt text-4xl text-green-800"></i>
+                <i class="fas fa-cookie-bite text-4xl text-green-800"></i>
+                <i class="fas fa-cocktail text-4xl text-green-800"></i>
+                <i class="fas fa-mug-hot text-4xl text-green-800"></i>
+                <i class="fab fa-nutritionix text-4xl text-green-800"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nutrient Details Section -->
+    <div id="nutrient-details-container" class="container mx-auto my-10 hidden">
+        <div class="text-center">
+            <h1 class="text-4xl font-bold mb-4">Explore Your Queries Below</h1>
+            <p class="text-lg mb-6">Shows the result of your query and more...</p>
+        </div>
+        <div id="nutrient-details-row" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+
+    <!-- External Script -->
+    <script src="calorie.js"></script>
+</body>
+</html>

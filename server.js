@@ -11,26 +11,39 @@ const CLIENT_ID = '31820bb71c9e4bba8c39322c54708840';
 const CLIENT_SECRET = '26d4847a388e4fe3aefeeb7291c4df8d';
 
 // Middleware
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors()); // Enable CORS for all routes
+app.use(express.json()); // Parse JSON request bodies
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded request bodies
 
-// Serve static files from the 'public' directory (e.g., CSS, JS)
+// Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Serve all .html files from the 'views' directory directly
 app.use('/', express.static(path.join(__dirname, 'views')));
 
-// Routes for individual HTML pages (optional but explicit)
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'views', 'index.html')));
-app.get('/calories.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'calories.html')));
-app.get('/login.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'login.html')));
-app.get('/register.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'register.html')));
-app.get('/profile.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'profile.html')));
-app.get('/tips.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'tips.html')));
-app.get('/main.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'main.html')));
-app.get('/programs.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'programs.html')));
-app.get('/test.html', (req, res) => res.sendFile(path.join(__dirname, 'views', 'test.html')));
+
+
+// Explicit routes for other HTML pages (optional)
+const htmlPages = [
+  'index',
+  'calories',
+  'login',
+  'register',
+  'profile',
+  'tips',
+  'main',
+  'programs',
+  'test',
+  'news',
+  'calorie',
+  'nutrient-details',
+];
+
+htmlPages.forEach((page) => {
+  app.get(`/${page}.html`, (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', `${page}.html`));
+  });
+});
 
 // Backend API endpoint for getting a token
 app.post('/token', async (req, res) => {
@@ -49,9 +62,14 @@ app.post('/token', async (req, res) => {
     );
     res.json(response.data);
   } catch (error) {
-    console.error('Error fetching token:', error);
+    console.error('Error fetching token:', error.response?.data || error.message);
     res.status(500).json({ error: 'Failed to fetch token' });
   }
+});
+
+// Default fallback for unknown routes
+app.use((req, res) => {
+  res.status(404).send('Page Not Found');
 });
 
 // Start the server

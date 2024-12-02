@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CaloCheck | Nutrition Details</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Navbar Section -->
+    <nav class="bg-green-600">
+      <div class="container mx-auto py-4 text-center">
+        <a
+          href="calorie.html"
+          class="text-5xl font-bold text-yellow-400 hover:text-white"
+          >CaloCheck</a
+        >
+      </div>
+    </nav>
+
+    <!-- Header Details -->
+    <div class="mt-10 text-center">
+      <h1
+        id="header-title"
+        class="text-4xl md:text-5xl font-bold text-green-700"
+      ></h1>
+      <p class="text-lg mt-4 text-gray-700">
+        Here is the detailed description of nutrients about your favorite food.
+      </p>
+    </div>
+
+    <!-- Photo and Know More Section -->
+    <div class="container mx-auto mt-10 flex flex-col items-center gap-6">
+      <!-- Food Photo -->
+      <img
+        id="food-photo"
+        src=""
+        alt="Food Photo"
+        class="w-64 h-64 object-cover rounded-md shadow-lg border"
+      />
+
+      <!-- Know More Button -->
+      <button
+        id="know-more-button"
+        class="bg-green-600 text-white px-6 py-3 rounded-md text-lg shadow-md hover:bg-green-700"
+      >
+        Know More
+      </button>
+    </div>
+
+    <!-- Table Section -->
+    <div class="container mx-auto mt-10 px-4">
+      <div class="overflow-x-auto">
+        <table
+          class="min-w-full bg-white border border-gray-200 shadow-lg rounded-md"
+        >
+          <thead>
+            <tr>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-xl font-semibold text-green-700"
+              >
+                Label
+              </th>
+              <th
+                class="px-6 py-3 border-b-2 border-gray-300 text-left text-xl font-semibold text-green-700"
+              >
+                Value
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Serving Quantity</td>
+              <td
+                id="serving-quantity"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Serving Unit</td>
+              <td
+                id="serving-unit"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">
+                Serving Weight Grams
+              </td>
+              <td
+                id="serving-weight"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Calories</td>
+              <td
+                id="calorie"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Total Fat</td>
+              <td
+                id="fat"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Saturated Fat</td>
+              <td
+                id="saturated-fat"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Cholesterol</td>
+              <td
+                id="cholesterol"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Sodium</td>
+              <td
+                id="sodium"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">
+                Total Carbohydrate
+              </td>
+              <td
+                id="carbohydrate"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Sugars</td>
+              <td
+                id="sugar"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 border-b border-gray-200">Proteins</td>
+              <td
+                id="proteins"
+                class="px-6 py-4 border-b border-gray-200 text-gray-700"
+              >
+                Loading...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Error Message -->
+      <div
+        id="error-message"
+        class="mt-6 text-center text-red-600 text-lg hidden"
+      >
+        Unable to fetch data. Please try again later.
+      </div>
+    </div>
+
+    <script src="./nutrient-details.js"></script>
+  </body>
+</html>
