@@ -37,6 +37,7 @@ const htmlPages = [
   'news',
   'calorie',
   'nutrient-details',
+  'weight',
 ];
 
 htmlPages.forEach((page) => {
