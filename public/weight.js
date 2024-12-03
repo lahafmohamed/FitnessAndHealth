@@ -1,5 +1,6 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
 
 // Firebase configuration
@@ -16,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 // Get form and canvas elements
 const weightForm = document.getElementById("weight-form");
@@ -23,97 +25,101 @@ const weightInput = document.getElementById("weight");
 const dateInput = document.getElementById("date");
 const weightChartCanvas = document.getElementById("weight-chart");
 
-// Function to handle form submission
+// Authenticate and fetch user data
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log(`Logged in as ${user.email}`);
+    loadWeightData(user.email); // Load weight history for the logged-in user
+  } else {
+    alert("You must be logged in to access this page.");
+    window.location.href = "/login.html"; // Redirect to login page
+  }
+});
+
+// Handle form submission
 weightForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  // Get weight and date values
   const weight = parseFloat(weightInput.value);
   const date = dateInput.value;
 
-  // Validate inputs
   if (!weight || !date) {
-    alert("Please enter a valid weight and date.");
+    alert("Please enter valid weight and date.");
     return;
   }
 
-  // Add data to Firestore
   try {
-    await addDoc(collection(db, "weights"), { weight, date });
+    const user = auth.currentUser;
+    if (!user) throw new Error("User is not logged in.");
+
+    await addDoc(collection(db, "weights"), {
+      email: user.email,
+      weight,
+      date,
+    });
     alert("Weight entry added successfully!");
     weightForm.reset();
-    loadWeightData(); // Refresh the chart with updated data
+    loadWeightData(user.email); // Refresh data
   } catch (error) {
     console.error("Error adding weight entry:", error);
     alert("Failed to add weight entry.");
   }
 });
 
-// Function to fetch weight data and render the chart
-async function loadWeightData() {
+// Fetch and display weight data
+async function loadWeightData(userEmail) {
   try {
-    // Fetch data from Firestore
     const querySnapshot = await getDocs(collection(db, "weights"));
     const weights = [];
     const dates = [];
 
     querySnapshot.forEach((doc) => {
       const data = doc.data();
-      weights.push(data.weight);
-      dates.push(data.date);
+      if (data.email === userEmail) {
+        weights.push(data.weight);
+        dates.push(data.date);
+      }
     });
 
-    // Sort data by date
     const sortedData = dates.map((date, index) => ({ date, weight: weights[index] }))
       .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    // Separate sorted data back into arrays
     const sortedDates = sortedData.map((entry) => entry.date);
     const sortedWeights = sortedData.map((entry) => entry.weight);
 
-    // Render the chart
     renderChart(sortedDates, sortedWeights);
   } catch (error) {
     console.error("Error fetching weight data:", error);
   }
 }
 
-// Function to render the chart
+// Render chart
 function renderChart(dates, weights) {
-  // Clear existing chart if it exists
   if (weightChartCanvas.chart) {
     weightChartCanvas.chart.destroy();
   }
 
-  // Create a new chart
   weightChartCanvas.chart = new Chart(weightChartCanvas, {
     type: "line",
     data: {
       labels: dates,
-      datasets: [{
-        label: "Weight (kg)",
-        data: weights,
-        borderColor: "blue",
-        backgroundColor: "rgba(0, 0, 255, 0.1)",
-        tension: 0.4,
-      }]
+      datasets: [
+        {
+          label: "Weight (kg)",
+          data: weights,
+          borderColor: "blue",
+          backgroundColor: "rgba(0, 0, 255, 0.1)",
+          tension: 0.4,
+        },
+      ],
     },
     options: {
       responsive: true,
-      plugins: {
-        legend: { position: "top" },
-      },
+      plugins: { legend: { position: "top" } },
       scales: {
-        x: {
-          title: { display: true, text: "Date" },
-        },
-        y: {
-          title: { display: true, text: "Weight (kg)" },
-        },
+        x: { title: { display: true, text: "Date" } },
+        y: { title: { display: true, text: "Weight (kg)" } },
       },
     },
   });
 }
-
-// Initial load of weight data
-loadWeightData();
