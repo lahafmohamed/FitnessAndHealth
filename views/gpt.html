@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat with AI</title>
+  <script>
+    async function sendMessage() {
+      const message = document.getElementById('userMessage').value;
+      if (!message) {
+        alert('Please enter a message.');
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Error fetching response from server.');
+        }
+
+        const data = await response.json();
+        document.getElementById('chatResponse').textContent = data.content;
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('chatResponse').textContent = 'Error communicating with the server.';
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Chat with AI</h1>
+  <textarea id="userMessage" placeholder="Enter your message here..." rows="5" cols="40"></textarea><br>
+  <button onclick="sendMessage()">Send</button>
+  <h2>Response:</h2>
+  <p id="chatResponse">Waiting for response...</p>
+</body>
+</html>

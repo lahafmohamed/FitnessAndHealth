@@ -1,14 +1,12 @@
 const express = require('express');
 const path = require('path');
-const axios = require('axios');
 const cors = require('cors');
+const dotenv = require('dotenv');
+
+dotenv.config(); // Load environment variables from .env file
 
 const app = express();
 const PORT = 3000;
-
-// FatSecret API credentials
-const CLIENT_ID = '31820bb71c9e4bba8c39322c54708840';
-const CLIENT_SECRET = '26d4847a388e4fe3aefeeb7291c4df8d';
 
 // Middleware
 app.use(cors()); // Enable CORS for all routes
@@ -21,9 +19,41 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Serve all .html files from the 'views' directory directly
 app.use('/', express.static(path.join(__dirname, 'views')));
 
+// Google Generative AI credentials
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
+// --- Chatbot Route ---
 
-// Explicit routes for other HTML pages (optional)
+// Route for chatbot
+app.post('/chat', async (req, res) => {
+  const { message } = req.body;
+
+  if (!message) {
+    return res.status(400).json({ error: 'Message is required' });
+  }
+
+  try {
+    const chat = model.startChat({
+      history: [],
+      generationConfig: {
+        maxOutputTokens: 500,
+      },
+    });
+
+    const response = await chat.sendMessage(message);
+    const reply = response.response.candidates[0].content.parts[0].text;
+
+    res.json({ reply });
+  } catch (error) {
+    console.error('Error processing chat message:', error.message);
+    res.status(500).json({ error: 'Failed to process message' });
+  }
+});
+
+// --- Static HTML Routes ---
+
 const htmlPages = [
   'index',
   'calories',
@@ -38,6 +68,8 @@ const htmlPages = [
   'calorie',
   'nutrient-details',
   'weight',
+  'chat',
+  'yogaBeginner',
 ];
 
 htmlPages.forEach((page) => {
@@ -46,34 +78,14 @@ htmlPages.forEach((page) => {
   });
 });
 
-// Backend API endpoint for getting a token
-app.post('/token', async (req, res) => {
-  try {
-    const response = await axios.post(
-      'https://oauth.fatsecret.com/connect/token',
-      new URLSearchParams({
-        grant_type: 'client_credentials',
-        scope: 'basic',
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-      }),
-      {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      }
-    );
-    res.json(response.data);
-  } catch (error) {
-    console.error('Error fetching token:', error.response?.data || error.message);
-    res.status(500).json({ error: 'Failed to fetch token' });
-  }
-});
+// --- Default Fallback for Unknown Routes ---
 
-// Default fallback for unknown routes
 app.use((req, res) => {
   res.status(404).send('Page Not Found');
 });
 
-// Start the server
+// --- Start Server ---
+
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
